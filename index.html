@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>哈基米 - 酒馆er专用AI助手</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 10px;
+            color: white;
+        }
+        .order-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
+        }
+        .order-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(238, 90, 36, 0.6);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #34495e;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin-top: 30px;
+            font-size: 1.4em;
+        }
+        .error-section {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .error-item {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #e74c3c;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .error-code {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.1em;
+        }
+        .check-section {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .check-link {
+            display: inline-block;
+            background: #17a2b8;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background 0.3s ease;
+        }
+        .check-link:hover {
+            background: #138496;
+        }
+        .contact-section {
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .wechat {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 10px 0;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #856404;
+            font-weight: bold;
+        }
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            margin: 30px 0;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎭 哈基米 - 酒馆er专属AI助手</h1>
+            <p style="font-size: 1.1em; margin: 0;">为酒馆用户量身打造的最强AI体验平台</p>
+            <br>
+            <a href="https://xidian-ai.faka.lat" class="order-link">🛒 立即自助下单</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>🔧 常见问题解决方案</h2>
+        <div class="error-section">
+            <p><strong>💡 温馨提示：</strong>大部分问题都是由于截断和空回复引起的。如果酒馆后台提示"no can"等错误，通常是预设头部包含被标记截断的内容，建议修改或更换预设。</p>
+            
+            <div class="error-item">
+                <div class="error-code">🔍 缺少 /v1 路径</div>
+                <p>这种错误不会显示错误代码，容易被忽略，请检查API地址是否完整。</p>
+            </div>
+
+            <div class="error-item">
+                <div class="error-code">❌ Service Unavailable</div>
+                <p>服务不可用错误，请检查是否已点击连接按钮并选择了合适的模型。</p>
+            </div>
+
+            <div class="error-item">
+                <div class="error-code">⏳ 429 错误</div>
+                <p>资源耗尽，请稍等片刻后重新尝试请求。</p>
+            </div>
+
+            <div class="error-item">
+                <div class="error-code">🚫 500 错误 (no candidates return)</div>
+                <p><strong>原因1：</strong>空回复，内容触发了谷歌审查机制</p>
+                <p><strong>解决方案：</strong>在破限预设最前方手动添加一栏随机内容，或联系破限作者/社区寻求帮助</p>
+                <p><strong>原因2：</strong>谷歌服务器主动拒绝了此次请求</p>
+            </div>
+
+            <div class="error-item">
+                <div class="error-code">🔄 502 错误</div>
+                <p>网关错误，谷歌服务器拒绝了请求，请稍后重试。</p>
+            </div>
+
+            <div class="error-item">
+                <div class="error-code">⚡ 408 错误 / Generation failed FetchError</div>
+                <p>连接断开错误，酒馆失去连接，重新点击连接按钮即可解决。</p>
+            </div>
+
+            <div class="error-item">
+                <div class="error-code">🌐 504 Gateway Timeout / Socket Hang Up</div>
+                <p>网络连接错误，如果您的网络正常，请尝试关闭代理工具后重试。如果问题依然存在，可能是我们的服务器与谷歌之间的连接出现问题。</p>
+            </div>
+
+            <div class="error-item">
+                <div class="error-code">💰 余额不足</div>
+                <p>当错误提示中出现金额信息时，表示账户余额已用完，请及时充值。</p>
+            </div>
+        </div>
+
+        <h2>🔍 API状态自助检测</h2>
+        <div class="check-section">
+            <p><strong>检测说明：</strong>快速检查您的API是否可用、余额情况等信息</p>
+            <a href="https://check.crond.dev" class="check-link" target="_blank">🔗 点击进入检测工具</a>
+            <p><strong>使用说明：</strong></p>
+            <ul>
+                <li>点击网站上的"关于"选项卡进入检测页面</li>
+                <li>测试时建议将延时设置为20ms，并发设置为1</li>
+                <li>只要有模型能够正常使用，API就是可用的</li>
+                <li>如果返回"forbidden"错误，说明额度已用完</li>
+                <li><span class="highlight">注意：</span>为节省大家的额度，Pro模型测试时会正常报错</li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="contact-section">
+            <h2>📞 联系我们</h2>
+            <a href="https://xidian-ai.faka.lat" class="order-link">🛒 自助下单入口</a>
+            <div class="wechat">📱 微信号：13870895970</div>
+            <p>🔒 <strong>服务承诺：</strong>保证API真实性，价格公道透明</p>
+            <p>🎯 <strong>持续优化：</strong>后续将增加更多模型供大家体验</p>
+            <p>💎 <strong>增值服务：</strong>我们将在付费套餐中尽可能免费提供更多功能</p>
+            <p>👥 <strong>专属售后：</strong>添加微信后可获取专属售后群，享受一对一技术支持</p>
+        </div>
+    </div>
+</body>
+</html>
